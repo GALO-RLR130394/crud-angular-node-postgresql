@@ -1,0 +1,69 @@
+<div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px" class="grid-container">
+
+	<div fxLayout="row"  fxFlexFill fxLayoutAlign="space-around center">
+		<mat-card class="mat-card mat-focus-indicator" fxFlex.xs="90" fxFlex.sm="90" fxFlex="90">
+			<mat-card-header class="mat-card-header">
+				<mat-card-title class="mat-card-title">
+					Inscripciones
+					<span class="example-spacer"></span>
+      				<span>
+      					<button mat-icon-button color="primary" aria-label="Example icon button with a home icon" [routerLink]="['/inscription/create']">
+				      		<mat-icon>add</mat-icon>
+						</button>
+					</span>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<div class="mat-elevation-z8">
+				  <table mat-table [dataSource]="dataSource">
+
+				    <!-- Position Column -->
+				    <ng-container matColumnDef="fullname">
+				      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+				      <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}}</td>
+				    </ng-container>
+
+				    <!-- Name Column -->
+				    <ng-container matColumnDef="age">
+				      <th mat-header-cell *matHeaderCellDef> Edad</th>
+				      <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+				    </ng-container>
+
+				    <ng-container matColumnDef="cost">
+				      <th mat-header-cell *matHeaderCellDef> Costo </th>
+				      <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+				    </ng-container>
+
+				    <!-- Name Column -->
+				    <ng-container matColumnDef="date">
+				      <th mat-header-cell *matHeaderCellDef>Fecha <br> Inscripción</th>
+				      <td mat-cell *matCellDef="let element"> {{element.inscription_date}} </td>
+				    </ng-container>
+
+				    <ng-container matColumnDef="actions">
+				      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+				      <td mat-cell *matCellDef="let element"> 
+				      	<button mat-icon-button color="primary" aria-label="Example icon button with a home icon" [routerLink]="['/inscription/update',element.inscription_uuid]">
+				      		<mat-icon>edit</mat-icon>
+						</button>
+						<button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="deleteInscription(element.inscription_uuid)">
+				      		<mat-icon>delete</mat-icon>
+						</button>
+					</td>
+				    </ng-container>
+				   
+				    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				  </table>
+
+				  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+				  				[length]="totalRecords"
+    							[pageSize]='5'
+				                showFirstLastButtons 
+				                aria-label="Select page of periodic elements">
+				  </mat-paginator>
+				</div>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

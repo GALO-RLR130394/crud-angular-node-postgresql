@@ -1,0 +1,75 @@
+<div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px" class="grid-container">
+	<div fxLayout="row"  fxFlexFill fxLayoutAlign="space-around center">
+		<mat-card class="mat-card mat-focus-indicator" fxFlex.xs="90" fxFlex.sm="90" fxFlex="90">
+			<mat-card-header class="mat-card-header">
+				<mat-card-title class="mat-card-title">
+					Inscripción
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<form [formGroup]="inscriptionForm">
+					<div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+						<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Nombre</mat-label>
+								<input matInput placeholder="Nombre" formControlName="firstname" required>
+								<mat-error *ngIf="!inscriptionForm.value.firstname">
+									Nombre es requerido
+								</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Apellido(s)</mat-label>
+								<input matInput placeholder="Apellido(s)" formControlName="lastname" required>
+								<mat-error *ngIf="!inscriptionForm.value.lastname">
+									Apellido(s) es requerido
+								</mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+
+					<div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+						<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Fecha de nacimiento</mat-label>
+								<input matInput placeholder="Fecha de nacimiento" formControlName="birthday" required>
+								<mat-error *ngIf="!inscriptionForm.value.birthday">
+									Fecha de nacimiento es requerida
+								</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Edad</mat-label>
+								<input matInput placeholder="Edad" formControlName="age" required>
+							</mat-form-field>
+						</div>
+					</div>
+
+					<div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+						<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Fecha de inscripción</mat-label>
+								<input matInput placeholder="Fecha de inscripción" formControlName="inscription_date" required>
+								<mat-error *ngIf="!inscriptionForm.value.inscription_date">
+									Fecha de inscripción
+								</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="full-input">
+								<mat-label>Costo</mat-label>
+								<input matInput placeholder="Costo" formControlName="cost" required>
+								<mat-error *ngIf="!inscriptionForm.value.cost">
+									Costo
+								</mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+
+					<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" *ngIf="inscription_uuid==null">
+						<button mat-raised-button color="primary" [disabled]="!inscriptionForm.valid" (click)="createInscription()">Guardar</button>
+					</div>
+					<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" *ngIf="inscription_uuid!=null">
+						<button mat-raised-button color="primary" [disabled]="!inscriptionForm.valid" (click)="updateInscription()">Editar</button>
+					</div>
+				</form>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>
