@@ -1,5 +1,3 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt-nodejs");
 const { successResponse, errorResponse } = require("../middlewares/responses");
 const pgConnection=require('../config/pgConnection');
 const poolPg= pgConnection.pool;
