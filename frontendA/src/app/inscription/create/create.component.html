@@ -31,7 +31,9 @@
 						<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
 							<mat-form-field appearance="outline" class="full-input">
 								<mat-label>Fecha de nacimiento</mat-label>
-								<input matInput placeholder="Fecha de nacimiento" formControlName="birthday" required>
+								<input matInput [matDatepicker]="picker" formControlName="birthday" required>
+								<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
 								<mat-error *ngIf="!inscriptionForm.value.birthday">
 									Fecha de nacimiento es requerida
 								</mat-error>
@@ -47,14 +49,18 @@
 						<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
 							<mat-form-field appearance="outline" class="full-input">
 								<mat-label>Fecha de inscripción</mat-label>
-								<input matInput placeholder="Fecha de inscripción" formControlName="inscription_date" required>
+								<input matInput [matDatepicker]="picker1" formControlName="inscription_date" required (ngModelChange)="calculateCost()">
+								<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+								<mat-datepicker #picker1></mat-datepicker>
 								<mat-error *ngIf="!inscriptionForm.value.inscription_date">
 									Fecha de inscripción
 								</mat-error>
 							</mat-form-field>
-							<mat-form-field appearance="outline" class="full-input">
+							<mat-form-field appearance="fill" floatLabel="always" class="full-input">
 								<mat-label>Costo</mat-label>
-								<input matInput placeholder="Costo" formControlName="cost" required>
+								<input matInput placeholder="Costo" formControlName="cost" required class="example-right-align" p>
+								<span matPrefix>$&nbsp;</span>
+    							<span matSuffix>.00 USD</span>
 								<mat-error *ngIf="!inscriptionForm.value.cost">
 									Costo
 								</mat-error>

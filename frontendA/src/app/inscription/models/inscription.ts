@@ -5,6 +5,7 @@ export class Inscription implements Deserializable {
 	firstname?:string;
     lastname?:string;
     birthday?:Date;
+    age?:number;
     inscription_date?:Date;
     cost?:number;
 

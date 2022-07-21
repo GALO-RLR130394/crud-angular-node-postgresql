@@ -48,7 +48,7 @@ const isAuth = (req, res, next) => {
 const isSuperUser = (req, res, next) => {
   const { user } = req;
 
-  if (user.role === "admin_sonoma") {
+  if (user.role === "admin") {
     next();
   } else {
     return res.status(403).send({
@@ -69,7 +69,7 @@ const isSuperUser = (req, res, next) => {
 const isCompAdmin = (req, res, next) => {
   const { user } = req;
 
-  if (user.role === "admin_comp") {
+  if (user.role === "admin_c") {
     next();
   } else {
     return res.status(403).send({

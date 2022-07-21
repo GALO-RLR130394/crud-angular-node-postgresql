@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.2
 
--- Started on 2022-07-20 21:36:02
+-- Started on 2022-07-21 01:31:15
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -27,7 +27,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- TOC entry 2997 (class 0 OID 0)
+-- TOC entry 2998 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
 --
@@ -51,6 +51,7 @@ CREATE TABLE public.inscriptions (
     birthday date,
     inscription_date date,
     cost real,
+    age integer DEFAULT 0 NOT NULL,
     status integer DEFAULT 1 NOT NULL
 );
 
@@ -58,18 +59,22 @@ CREATE TABLE public.inscriptions (
 ALTER TABLE public.inscriptions OWNER TO postgres;
 
 --
--- TOC entry 2991 (class 0 OID 17332)
+-- TOC entry 2992 (class 0 OID 17332)
 -- Dependencies: 201
 -- Data for Name: inscriptions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.inscriptions (inscription_uuid, firstname, lastname, birthday, inscription_date, cost, status) FROM stdin;
-c2b01cc4-0891-11ed-9da9-e34170dc39bc	Inscripcion angular	legaspi	2021-07-31	2021-05-31	200	1
-570a794c-0887-11ed-8709-3b04aecf85d8	Raul editado	Legaspi	1994-03-13	2021-12-04	500	0
+COPY public.inscriptions (inscription_uuid, firstname, lastname, birthday, inscription_date, cost, age, status) FROM stdin;
+570a794c-0887-11ed-8709-3b04aecf85d8	Raul editado	Legaspi	1994-03-13	2021-12-04	500	28	1
+6d93376a-08bb-11ed-b04e-47de213d940d	Roberto	Legaspi	1992-01-01	1992-10-13	2900	30	1
+c2b01cc4-0891-11ed-9da9-e34170dc39bc	Inscripcion angular	Apellido	2004-06-01	2021-05-31	200	18	1
+a7c1482c-08a3-11ed-b40b-d7db140df6ff	neuva	nueva	1992-01-01	2021-07-31	230	30	0
+f5819bae-08a1-11ed-a8d1-1f86aa49d37f	Inscripcion angular	legaspinueva	2004-07-21	2016-01-31	200	18	0
+8af76648-08be-11ed-8061-a30a44678e66	MAKE AND ROCK	RFCMAKEANDROCK	1992-01-01	2020-01-01	\N	30	1
 \.
 
 
--- Completed on 2022-07-20 21:36:02
+-- Completed on 2022-07-21 01:31:15
 
 --
 -- PostgreSQL database dump complete

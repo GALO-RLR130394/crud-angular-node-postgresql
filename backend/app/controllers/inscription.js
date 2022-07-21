@@ -54,6 +54,7 @@ module.exports = {
       firstname,
       lastname,
       birthday,
+      age,
       inscription_date,
       cost
     }=req.body;
@@ -63,6 +64,7 @@ module.exports = {
         typeof firstname=== undefined ||
         typeof lastname === undefined ||
         typeof birthday === undefined ||
+        typeof age === undefined ||
         typeof inscription_date === undefined ||
         typeof cost === undefined 
       ) {
@@ -70,12 +72,13 @@ module.exports = {
       }
 
       const query = {
-        text: `INSERT INTO inscriptions (firstname,lastname,birthday,inscription_date,cost) 
-          VALUES ($1,$2,$3,$4,$5) RETURNING inscription_uuid`,
+        text: `INSERT INTO inscriptions (firstname,lastname,birthday,age,inscription_date,cost) 
+          VALUES ($1,$2,$3,$4,$5,$6) RETURNING inscription_uuid`,
         values: [
           firstname,
           lastname,
           birthday,
+          age,
           inscription_date,
           cost
         ]
@@ -110,12 +113,13 @@ module.exports = {
       firstname,
       lastname,
       birthday,
+      age,
       inscription_date,
       cost
     }=req.body;
 
     const query=`UPDATE inscriptions SET firstname='${firstname}',lastname='${lastname}',
-          birthday='${birthday}',inscription_date='${inscription_date}' 
+          birthday='${birthday}',age='${age}',inscription_date='${inscription_date}',cost='${cost}' 
           WHERE inscription_uuid='${inscription_uuid}'`;
         
       poolPg.connect().then(client => {
